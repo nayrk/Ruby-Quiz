@@ -45,7 +45,7 @@ class Graph
 
 	# Wikipedia Algorithm Step by Step
 	# http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
-	# dijkstars(goal,start)
+	# Dijkstras(goal,start)
 	# start - initial node, set to first value of the sorted vertex
 	# goal - destination node, set to nil by default
 	def dijkstras(start=@vertices.keys.sort[0],goal=nil)
