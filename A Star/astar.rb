@@ -189,7 +189,7 @@ class AStar
 				next if !node.valid?
 				next if closed_list.include? node
 				if open_list.include? node
-					if node.g_score > (node.g_score + parent.g_score)
+					if node.g_score > (node.cost + parent.g_score)
 						node = open_list.get(node)
 						node.parent = parent
 						node.g_score = parent.g_score + node.cost
