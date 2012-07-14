@@ -60,7 +60,7 @@ class Graph
 		# Step 2 
 		# - Set initial node as current
 		# - Mark all nodes unvisited except start node
-		unvisited = @vertices.keys - start.to_a
+		unvisited = @vertices.keys - [start]
 		current = start
 
 		while(!unvisited.empty?)
@@ -82,19 +82,11 @@ class Graph
 			# - Add current node to visited
 			# - Remove current node from unvisited
 			visited << current
-			unvisited -= current.to_a
+			unvisited -= [current]
 
-			# Find the smallest weighted node, could use a PQueue instead
-			smallest = @infinity
-			current = @infinity
-			unvisited.each do |node|
-				if @vertices[node] < smallest
-					smallest = @vertices[node]
-					# Step 6
-					# - Set smallest weighted node as current node, continue
-					current = node
-				end
-			end
+			# Find the smallest weighted node
+			current = unvisited.collect { |node| [@vertices[node],node] }
+			current.empty? ? current = @infinity : current = current.min[1]
 
 			# Step 5
 			# - If goal is in visited, stop
@@ -124,4 +116,4 @@ class Graph
 end
 
 graph = Graph.new(ARGV[0])
-graph.dijkstras("1","5")
+graph.dijkstras("1","6")
